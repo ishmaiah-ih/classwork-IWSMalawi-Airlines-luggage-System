@@ -1,4 +1,4 @@
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-white" id="sidenav-main">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" href="{{ route('admin.index') }}">
@@ -18,19 +18,28 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.customers') ? 'active text-white bg-gradient-primary' : '' }}" href="{{ route('admin.customers') }}">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md {{ request()->routeIs('admin.customers') ? 'bg-gradient-primary text-white' : 'bg-white' }} text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa fa-bullhorn text-lg {{ request()->routeIs('admin.customers') ? 'text-white' : '' }}"></i>
+                <a class="nav-link {{ request()->routeIs(['admin.customers', 'admin.customer-add']) ? 'active text-white bg-gradient-primary' : '' }}" href="{{ route('admin.customers') }}">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md {{ request()->routeIs(['admin.customers', 'admin.customer-add']) ? 'bg-gradient-primary text-white' : 'bg-white' }} text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa fa-list text-lg {{ request()->routeIs(['admin.customers', 'admin.customer-add']) ? 'text-white' : '' }}"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Customers</span>
+                    <span class="nav-link-text ms-1">Customers-Tabular</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->is('billing.php') ? 'active text-white bg-gradient-primary' : '' }}" href="billing.php">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md {{ request()->is('billing.php') ? 'bg-gradient-primary text-white' : 'bg-white' }} text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa fa-file-invoice-dollar text-lg {{ request()->is('billing.php') ? 'text-white' : '' }}"></i>
+                <a class="nav-link {{ request()->routeIs('admin.cardular') ? 'active text-white bg-gradient-primary' : '' }}" href="{{ route('admin.customer-card') }}">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md {{ request()->routeIs('admin.customer-card') ? 'bg-gradient-primary text-white' : 'bg-white' }} text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa fa-id-card text-lg {{ request()->routeIs('admin.cardular') ? 'text-white' : '' }}"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Billing</span>
+                    <span class="nav-link-text ms-1">Customers-Cards</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('admin.luggageList') ? 'active text-white bg-gradient-primary' : '' }}" href="{{ route('admin.luggageList') }}">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md {{ request()->routeIs('admin.luggageList') ? 'bg-gradient-primary text-white' : 'bg-white' }} text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa fa-list text-lg {{ request()->routeIs('admin.luggageList') ? 'text-white' : '' }}"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Luggage Items</span>
                 </a>
             </li>
 
@@ -45,14 +54,7 @@
                     <span class="nav-link-text ms-1">Services</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->is('users.php') ? 'active text-white bg-gradient-primary' : '' }}" href="users.php">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md {{ request()->is('users.php') ? 'bg-gradient-primary text-white' : 'bg-white' }} text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-user-plus text-lg {{ request()->is('users.php') ? 'text-white' : '' }}"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Admin</span>
-                </a>
-            </li>
+
 
             <li class="nav-item">
                 <a class="nav-link {{ request()->is('social_media.php') ? 'active text-white bg-gradient-primary' : '' }}" href="social_media.php">
@@ -74,6 +76,12 @@
         </ul>
     </div>
     <div class="sidenav-footer mx-3">
-        <a class="btn  bg-primary mt-3 w-70 text-white" href="">Logout</a>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="btn bg-primary mt-5 w-70 text-white">
+                Logout
+            </button>
+        </form>
     </div>
+
 </aside>

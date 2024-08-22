@@ -7,7 +7,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>@yield('title', 'Luggage Application')</title>
 
     <!--     Fonts and icons     -->
@@ -22,13 +22,15 @@
     <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 {{--    @vite('resources/css/app.css')--}}
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
 
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
 
-<?php //include 'sidebar.php' ?>
+
 
 @include('admin.includes.sidebar')
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -45,6 +47,6 @@
 
 
 
-{{--        footer --}}
+
 
 @include('admin.includes.footer')

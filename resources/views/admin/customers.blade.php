@@ -5,20 +5,25 @@
     <div class="row">
         <div class="col col-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     <h4>
-                        User's List
-                        <a href="{{route('admin.customer-add')}}" class="btn btn-primary float-end">
-                            Add User
-                        </a>
-
-
+                        Customer's List
                     </h4>
+                    <a href="{{route('admin.customer-add')}}" class="btn btn-primary">
+                        Add customer
+                    </a>
 
-                    <table class="table table-bordered table-striped table-hover">
+
+                </div>
+                @if (session('success'))
+                    <div class="alert bg-gray-200 mx-3 text-white p-2 rounded-md mb-2 mt-2">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                <div class="card-body p-0">
+                    <table class="table table-bordered table-striped table-hover mb-0">
                         <thead class="text-center">
                         <tr>
-{{--                            <th>Id</th>--}}
                             <th>FirstName</th>
                             <th>LastName</th>
                             <th>Email</th>
@@ -29,37 +34,42 @@
                         </tr>
                         </thead>
                         <tbody class="text-center">
-                        <tr>
-{{--                            <td>1</td>--}}
-                            <td>Ishmael</td>
-                            <td>Mwalwanda</td>
-                            <td>mwalwandaishmael@gmail.com</td>
-                            <td>0991315552</td>
-                            <td>Chileka</td>
-                            <td>USA</td>
-
-                            <td>
-                                <a href="" class="text-primary me-2"><i class="fas fa-eye"></i>
-                                </a>
-                                <a href="" class="text-success me-2"><i class="fas fa-edit"></i>
-                                </a>
-
-                                <a href="" class="text-danger"
-                                   onclick="confirm('Are you sure you want to delete this customer?')"
-                                ><i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
+                        @foreach($customers as $customer)
+                            <tr>
+                                <td>{{ $customer->first_name }}</td>
+                                <td>{{ $customer->surname }}</td>
+                                <td>{{ $customer->email }}</td>
+                                <td>{{ $customer->phone_number }}</td>
+                                <td>{{ $customer->departure_point }}</td>
+                                <td>{{ $customer->destination }}</td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="{{route('admin.customer.show', $customer->id)}}" class="text-primary me-1 btn btn-primary text-white">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <form action="{{ route('admin.customer-delete', $customer->id) }}" method="POST" >
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger ml-2" onclick="return confirm('Are you sure you want to delete this customer?')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
+                    <!-- Pagination Links -->
+                    <div class="d-flex justify-content-center mt-4">
+                        {{ $customers->links() }}
 
+
+
+{{--                        {{ $customers->links('pagination::bootstrap-4') }}--}}
+                    </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 @endsection
-{{--@extends('script')--}}
-
-{{--@include('admin.includes.footer')--}}
