@@ -71,6 +71,7 @@ class CommonController extends Controller
         $customers = Customer::with('luggageItems')->get();
         return view('admin.cardular', compact('customers'));
     }
+
     public function adminCustomers()
     {
         $customers = Customer::paginate(5);
@@ -80,18 +81,7 @@ class CommonController extends Controller
             'customers' => $customers
         ]);
     }
-//    search func
-//    public function adminCustomerCardSearch(Request $request)
-//    {
-//        $search = $request->input('search');
-//
-//        $customers = Customer::when($search, function ($query, $search) {
-//            $query->where('surname', 'like', "%$search%")
-//                ->orWhere('ticket_number', 'like', "%$search%");
-//        })->get();
-//
-//        return view('admin.cardular', compact('customers'));
-//    }
+
     public function search(Request $request)
     {
         $query = $request->input('query');

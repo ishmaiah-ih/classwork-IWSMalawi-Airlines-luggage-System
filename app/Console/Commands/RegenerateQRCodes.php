@@ -45,7 +45,7 @@ class RegenerateQRCodes extends Command
 
             foreach ($customer->luggageItems as $index => $item) {
                 $qrCodeData .= "Luggage Item " . ($index + 1) . ":\n\n"
-                    . "  Name: {$item->luggage_name}\n\n"
+                    . "  Name Of Item: {$item->luggage_name}\n\n"
                     . "  Characteristic 1: {$item->char_1}\n\n"
                     . "  Characteristic 2: {$item->char_2}\n\n"
                     . "  Characteristic 3: {$item->char_3}\n\n";

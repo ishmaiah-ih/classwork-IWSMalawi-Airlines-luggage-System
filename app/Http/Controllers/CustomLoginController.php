@@ -28,11 +28,11 @@ class CustomLoginController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ])) {
-            // If successful, redirect to intended location
-            return redirect()->intended('/admin/index'); // or any other route you have
+            // successful login
+            return redirect()->intended('/admin/index');
         }
 
-        // If unsuccessful, redirect back with input
+        // unsuccessful login,
         return redirect()->back()->withInput()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->withInput();

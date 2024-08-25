@@ -35,21 +35,22 @@ class LuggageController extends Controller
             ]);
         }
 
-        // Prepare the QR code data as a plain text string
-        $qrCodeData = "Report Generated\n\nSurname: {$customer->surname}\n"
-            . "First Name: {$customer->first_name}\n"
-            . "Email: {$customer->email}\n"
-            . "Phone Number: {$customer->phone_number}\n"
-            . "Ticket Number: {$customer->ticket_number}\n"
-            . "Departure Point: {$customer->departure_point}\n"
-            . "Destination: {$customer->destination}\n";
+        // QR code data as a plain text string
+        $qrCodeData = "Report Generated @ " . now()->format('Y-m-d H:i:s') . "\n\n\n"
+            . "Surname: {$customer->surname}\n\n"
+            . "First Name: {$customer->first_name}\n\n"
+            . "Email: {$customer->email}\n\n"
+            . "Phone Number: {$customer->phone_number}\n\n"
+            . "Ticket Number: {$customer->ticket_number}\n\n"
+            . "Departure Point: {$customer->departure_point}\n\n"
+            . "Destination: {$customer->destination}\n\n";
 
         foreach ($customer->luggageItems as $index => $item) {
-            $qrCodeData .= "Luggage Item " . ($index + 1) . ":\n"
-                . "  Name: {$item->luggage_name}\n"
-                . "  Characteristic 1: {$item->char_1}\n"
-                . "  Characteristic 2: {$item->char_2}\n"
-                . "  Characteristic 3: {$item->char_3}\n";
+            $qrCodeData .= "Luggage Item " . ($index + 1) . ":\n\n"
+                . "  Name of Item: {$item->luggage_name}\n\n"
+                . "  Characteristic 1: {$item->char_1}\n\n"
+                . "  Characteristic 2: {$item->char_2}\n\n"
+                . "  Characteristic 3: {$item->char_3}\n\n";
         }
 
         // Generate the QR code with the formatted text

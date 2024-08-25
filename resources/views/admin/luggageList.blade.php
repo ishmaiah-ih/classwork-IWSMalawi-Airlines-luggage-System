@@ -12,7 +12,7 @@
 
                 </div>
                 <div class="card-body p-0">
-                    <table class="table table-bordered table-striped table-hover mb-0">
+                    <table class="table table-bordered table-striped table-hover mb-0" id="myTable">
                         <thead class="text-center">
                         <tr>
 
