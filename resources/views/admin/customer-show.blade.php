@@ -1,6 +1,7 @@
 @extends('admin.common')
-@section('title', 'Customer Show')
+@section('title', 'customers | show')
 @section('content')
+
 
     <div class="max-w-lg mx-auto mt-10">
         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
