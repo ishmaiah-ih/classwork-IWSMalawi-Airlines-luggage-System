@@ -75,8 +75,7 @@ class CommonController extends Controller
     public function adminCustomers()
     {
         $customers = Customer::paginate(5);
-//        $customers = Customer::all();
-//        return view('admin.customers', compact('customers'));
+
         return view('admin.customers', [
             'customers' => $customers
         ]);
